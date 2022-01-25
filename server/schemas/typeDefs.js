@@ -1,6 +1,5 @@
 const { gql } = require("apollo-server-express");
 
-// FIXME: re-add `authors: [String]` to saveBook Mutation.
 const typeDefs = gql`
 	type Query {
 		me: User
@@ -14,7 +13,7 @@ const typeDefs = gql`
 	}
 
 	type User {
-		_id: ID
+		_id: ID!
 		username: String
 		email: String
 		bookCount: Int
@@ -32,6 +31,7 @@ const typeDefs = gql`
 
 	input BookInput {
 		bookId: String!
+		authors: [String]
 		description: String
 		title: String
 		image: String
@@ -45,11 +45,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-// saveBook(
-// 	description: String
-// 	title: String
-// 	bookId: ID
-// 	image: String
-// 	link: String
-// ): User
